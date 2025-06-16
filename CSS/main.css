@@ -51,3 +51,15 @@ section{
     background-color: var(--std_orange);
     color: var(--white);
 }
+#matrixFill{
+    color: var(--white);
+}
+
+#matrixAuto2x2{
+    margin-top: 2rem;
+}
+#matrixAuto2x2 label{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
