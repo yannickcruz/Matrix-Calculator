@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'Barlow';
+    src: url('../source/BarlowCondensed-Regular.ttf') format('truetype');
+    font-style: normal;
+}
+@font-face {
+    font-family: 'BebasNeue';
+    src: url('../source/BebasNeue-Regular.ttf') format('truetype');
+    font-style: normal;
+}
+
+*{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Barlow', sans-serif; 
+    background-color: var(--background);
+    overflow-x: hidden;
+    box-sizing: border-box;   
+    background-color: var(--black);
+}
+
+:root{
+    --black: #000000;
+    --white: #ffffff;
+    --std_orange: #ff8000;
+    --light_gray: #6a6a6a;
+}
