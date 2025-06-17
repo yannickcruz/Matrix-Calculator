@@ -33,14 +33,30 @@
                 <button id="save" onclick="save()">Salvar</button>
             </div>
             <span id="matrixFill">Preencha a matriz</span>
-            <div id="matrixAuto2x2">
+            <div id="matrixAuto4x4" class="matrixAutoCommon">
                 <label for="fill">
                     <input type="text" name="a11" id="a11">
-                    <input type="text" name="a11" id="a12">
-                    <input type="text" name="a11" id="a21">
-                    <input type="text" name="a11" id="a22">
+                    <input type="text" name="a12" id="a12">
+                    <input type="text" name="a13" id="a13">
+                    <input type="text" name="a14" id="a14">
+
+                    <input type="text" name="a21" id="a21">
+                    <input type="text" name="a22" id="a22">
+                    <input type="text" name="a23" id="a23">
+                    <input type="text" name="a24" id="a24">
+
+                    <input type="text" name="a31" id="a31">
+                    <input type="text" name="a32" id="a32">
+                    <input type="text" name="a33" id="a33">
+                    <input type="text" name="a34" id="a34">
+
+                    <input type="text" name="a41" id="a41">
+                    <input type="text" name="a42" id="a42">
+                    <input type="text" name="a43" id="a43">
+                    <input type="text" name="a44" id="a44">
                 </label>
             </div>
+            <button id="saveMatrix" onclick="getMatrix()">Salvar Matriz</button>
         </div>
     </section>
     <script src="./script/main.js"></script>

@@ -10,8 +10,14 @@ function save(){
     const matrixName = document.getElementById("matrixName").value;
     mat[matrixName] = order;
 
-    console.log(`Matriz ${matrixName} agora possui ordem ${order}`);
-
-    
+    console.log(`Matriz ${matrixName} agora possui ordem ${order}`); 
 }
+
+function getMatrix(){
+    const inputs = document.querySelectorAll(".matrixAutoCommon input").value;
+    let matrixValues = [];
+
+    console.log(inputs);
+}
+
 
