@@ -15,10 +15,10 @@
                 <label for="matrix name">
                     <span class="chooseTitle">Selecione uma matriz</span>
                     <select name="matrixName" id="matrixName">
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
-                        <option value="D">D</option>
+                        <option value="A" matrixArray="Am">A</option>
+                        <option value="B" matrixArray="Bm">B</option>
+                        <option value="C" matrixArray="Cm">C</option>
+                        <option value="D" matrixArray="Dm">D</option>
                     </select>
                 </label>
                 <label for="matrix order">
@@ -33,6 +33,19 @@
                 <button id="save" onclick="save()">Salvar</button>
             </div>
             <span id="matrixFill">Preencha a matriz</span>
+            <div id="scalar" class="matrixAutoCommon">
+
+            </div>
+            <div id="matrixAuto2x2" class="matrixAutoCommon">
+
+            </div>
+            <div id="matrixAuto3x3" class="matrixAutoCommon">
+
+            </div>
+            <div id="matrixAuto4x4" class="matrixAutoCommon">
+                
+            </div>
+            <!--
             <div id="matrixAuto4x4" class="matrixAutoCommon">
                 <label for="fill">
                     <input type="text" name="a11" id="a11">
@@ -56,6 +69,7 @@
                     <input type="text" name="a44" id="a44">
                 </label>
             </div>
+            -->
             <button id="saveMatrix" onclick="getMatrix()">Salvar Matriz</button>
         </div>
     </section>

@@ -85,10 +85,15 @@ section{
 }
 
 #saveMatrix{
+    /*Colocar display:none quando o código JS estiver preparado para ocultar/mostrar o botão*/
     padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     color: var(--black);
     background-color: var(--white);
+}
+
+#scalar, #matrixAuto2x2, #matrixAuto3x3, #matrixAuto4x4{
+    display: none;
 }
