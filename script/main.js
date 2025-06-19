@@ -6,20 +6,16 @@ let mat = {
     D: 0
 }
 
-// Objeto que armazena um array contendo todos os elementos da matriz digitada pelo usuário
+// Objeto que armazena arrays contendo todos os elementos da matriz digitada pelo usuário
 let matArr = {
     Am: [],
     Bm: [],
     Cm: [],
     Dm: []
 }
-function remove(){
-    const order = parseInt(document.getElementById("matrixOrder").value);
-    const matrix = [1, 2, 3, 4];
-    for(let i = 0; i < 4; i++){
-        
-    }
-    
+function removeMatrix(){
+    const div = document.querySelectorAll(".matrixAutoCommon");
+    div.forEach(div => div.innerHTML = '');
 }
 
 function createScalar(){
@@ -39,7 +35,7 @@ function create2x2(){
     const label = document.createElement("label");
     label.setAttribute("for", "fill");
     div.appendChild(label);
-    console.log(`Order vale: ${order + 1}`);
+    //console.log(`Order vale: ${order + 1}`);
     for(let line = 1; line < order + 1; line++){
         for(let col = 1; col < order + 1; col++){
             const input = document.createElement("input");
@@ -53,17 +49,47 @@ function create2x2(){
     div.style.display = 'block';
 }
 function create3x3(){
-
+    const div = document.getElementById("matrixAuto3x3");
+    const order = parseInt(document.getElementById("matrixOrder").value);
+    const label = document.createElement("label");
+    label.setAttribute("for", "fill");
+    div.appendChild(label);
+    //console.log(`Order vale: ${order + 1}`);
+    for(let line = 1; line < order + 1; line++){
+        for(let col = 1; col < order + 1; col++){
+            const input = document.createElement("input");
+            input.setAttribute("type", "text");
+            input.setAttribute("name", `a${line}${col}`);
+            input.setAttribute("id", `a${line}${col}`);
+            label.appendChild(input);
+            console.log(`Criado input referente a posição ${line} ${col}`);
+        }
+    }
+    div.style.display = 'block';
 }
 function create4x4(){
-
+    const div = document.getElementById("matrixAuto4x4");
+    const order = parseInt(document.getElementById("matrixOrder").value);
+    const label = document.createElement("label");
+    label.setAttribute("for", "fill");
+    div.appendChild(label);
+    //console.log(`Order vale: ${order + 1}`);
+    for(let line = 1; line < order + 1; line++){
+        for(let col = 1; col < order + 1; col++){
+            const input = document.createElement("input");
+            input.setAttribute("type", "text");
+            input.setAttribute("name", `a${line}${col}`);
+            input.setAttribute("id", `a${line}${col}`);
+            label.appendChild(input);
+            console.log(`Criado input referente a posição ${line} ${col}`);
+        }
+    }
+    div.style.display = 'block';
 }
-function save(){
+function generateMatrix(){
+    removeMatrix();
+    const select = document.getElementById("matrixOrder");
     const order = document.getElementById("matrixOrder").value;
-    const matrixNameValue = document.getElementById("matrixName").value;
-    mat[matrixNameValue] = order;
-
-    console.log(`Matriz ${matrixNameValue} agora possui ordem ${order}`); 
     if(order == 1){
         createScalar();
     } else if(order == 2){
@@ -73,6 +99,17 @@ function save(){
     } else if(order == 4){
         create4x4();
     }
+    select.disabled = true;
+}
+
+function save(){
+    
+    const order = document.getElementById("matrixOrder").value;
+    const matrixNameValue = document.getElementById("matrixName").value;
+    mat[matrixNameValue] = order;
+
+    console.log(`Matriz ${matrixNameValue} agora possui ordem ${order}`); 
+    generateMatrix();
 
 }
 
@@ -110,6 +147,42 @@ container.addEventListener('keydown', (e) => {
         }
     }
 });
+
+function matrixSlider(){
+    //Seleciona o nome da matriz
+    const matrixNameValue = document.getElementById("matrixName").value;
+
+    //Seleciona todos os inputs de todas as divs de classe .matrixAutoCommon
+    const inputs = document.querySelectorAll(".matrixAutoCommon input");
+    
+    //Seleciona o 'Select' que contém a escolha da ordem da matriz
+    const select = document.getElementById("matrixOrder");
+
+    //Pega a ordem da matriz previamente salvo
+    const matrixOrder = mat[matrixNameValue];
+    console.log(`Order vale: ${matrixOrder}`);
+
+    //Variável para armazenar os valores dos inputs das matrizes, caso estejam salvos
+    let matrixValues = [];
+
+    //Seleciona o Select que alterna as matrizes
+    const matrixName = document.getElementById("matrixName");
+
+    //Pega o valor do atributo matrixArray das opções do select 'matrixName'
+    let selected = matrixName.options[matrixName.selectedIndex];
+    let matrixArrayId = selected.getAttribute("matrixArray");
+
+    if(mat[matrixNameValue] == 0){
+        removeMatrix();
+        select.disabled = false;
+    } else{
+        matrixValues = matArr[matrixArrayId];
+        console.log(matrixValues);
+        document.getElementById("matrixOrder").value = matrixOrder;
+        generateMatrix();
+        
+    }
+}
 
 
 
