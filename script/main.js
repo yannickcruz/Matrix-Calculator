@@ -20,7 +20,6 @@ function removeMatrix(){
 
 function createScalar(){
     const div = document.getElementById("scalar");
-
     const input = document.createElement("input");
     input.setAttribute("type", "text");
     input.setAttribute("name", "a11");
@@ -135,10 +134,9 @@ function getMatrix(){
 
 // Código para passar para o próximo input ao apertar 'enter'
 
-const container = document.querySelector('.matrixAutoCommon');
-
-container.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
+function next(container){
+    container.addEventListener('keydown', (e) => {
+    if (e.key == 'Enter') {
         e.preventDefault();
         const inputs = container.querySelectorAll('input');
         const index = Array.from(inputs).indexOf(e.target);
@@ -147,13 +145,17 @@ container.addEventListener('keydown', (e) => {
         }
     }
 });
+}
+//const container = document.querySelector('.matrixAutoCommon');
+next(document.getElementById("matrixAuto2x2"));
+next(document.getElementById("matrixAuto3x3"));
+next(document.getElementById("matrixAuto4x4"));
 
 function matrixSlider(){
     //Seleciona o nome da matriz
     const matrixNameValue = document.getElementById("matrixName").value;
 
-    //Seleciona todos os inputs de todas as divs de classe .matrixAutoCommon
-    const inputs = document.querySelectorAll(".matrixAutoCommon input");
+    
     
     //Seleciona o 'Select' que contém a escolha da ordem da matriz
     const select = document.getElementById("matrixOrder");
@@ -180,7 +182,12 @@ function matrixSlider(){
         console.log(matrixValues);
         document.getElementById("matrixOrder").value = matrixOrder;
         generateMatrix();
-        
+
+        //Seleciona todos os inputs de todas as divs de classe .matrixAutoCommon
+        const inputs = document.querySelectorAll(".matrixAutoCommon input");
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].value = matrixValues[i] ?? '';
+        }
     }
 }
 
