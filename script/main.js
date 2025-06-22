@@ -13,10 +13,15 @@ let matArr = {
     Cm: [],
     Dm: []
 }
+const saveMatrix = document.getElementById("saveMatrix");
 function removeMatrix(){
+    const select = document.getElementById("matrixOrder");
     const div = document.querySelectorAll(".matrixAutoCommon");
     div.forEach(div => div.innerHTML = '');
+    saveMatrix.style.display = 'none';
+    select.disabled = false;
 }
+
 
 function createScalar(){
     const div = document.getElementById("scalar");
@@ -27,6 +32,7 @@ function createScalar(){
 
     div.style.display = 'block';
     div.appendChild(input);
+    saveMatrix.style.display = 'block';
 }
 function create2x2(){
     const div = document.getElementById("matrixAuto2x2");
@@ -46,6 +52,7 @@ function create2x2(){
         }
     }
     div.style.display = 'block';
+    saveMatrix.style.display = 'block';
 }
 function create3x3(){
     const div = document.getElementById("matrixAuto3x3");
@@ -65,6 +72,7 @@ function create3x3(){
         }
     }
     div.style.display = 'block';
+    saveMatrix.style.display = 'block';
 }
 function create4x4(){
     const div = document.getElementById("matrixAuto4x4");
@@ -84,6 +92,7 @@ function create4x4(){
         }
     }
     div.style.display = 'block';
+    saveMatrix.style.display = 'block';
 }
 function generateMatrix(){
     removeMatrix();
@@ -91,12 +100,16 @@ function generateMatrix(){
     const order = document.getElementById("matrixOrder").value;
     if(order == 1){
         createScalar();
+        alert("Um escalar foi criado.");
     } else if(order == 2){
         create2x2();
+        alert("Uma matriz 2x2 foi criada.");
     } else if(order == 3){
         create3x3();
+        alert("Uma matriz 3x3 foi criada.");
     } else if(order == 4){
         create4x4();
+        alert("Uma matriz 4x4 foi criada.");
     }
     select.disabled = true;
 }

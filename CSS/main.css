@@ -38,7 +38,7 @@ section{
     color: var(--white);
 }
 
-.choose button{
+.choose button, #reset{
     padding: 10px;
     background-color: var(--white);
     color: var(--black);
@@ -46,18 +46,19 @@ section{
     cursor: pointer;
     border: none;
     border-radius: 5px;
+    font-family: 'Barlow', serif;
 }
-.choose button:hover{
+.choose button:hover, #saveMatrix:hover, #reset:hover{
     background-color: var(--std_orange);
     color: var(--white);
 }
 #matrixFill{
     display: block;
     color: var(--white);
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 .matrixAutoCommon{
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 .matrixAutoCommon input{
     width: 3rem;
@@ -85,7 +86,8 @@ section{
 }
 
 #saveMatrix{
-    /*Colocar display:none quando o código JS estiver preparado para ocultar/mostrar o botão*/
+    display: none;
+    margin-top: 0.5rem;
     padding: 10px;
     border: none;
     border-radius: 5px;
