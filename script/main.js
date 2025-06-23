@@ -13,6 +13,15 @@ let matArr = {
     Cm: [],
     Dm: []
 }
+//Função que mostra o display a matriz criada
+function display_create(order){
+    // Variável que pega o elemento 'p' da div display
+    const p = document.getElementById("displayText");
+    if(order === 1){
+        p.innerHTML = "Escalar criado";
+    }
+    p.innerHTML = `Matriz ${order}x${order} criada`;
+}
 // Seleciona o botão de salvar os elementos da matriz
 const saveMatrix = document.getElementById("saveMatrix");
 function removeMatrix(){
@@ -50,6 +59,7 @@ function createScalar(){
     div.style.display = 'block';
     div.appendChild(input);
     saveMatrix.style.display = 'block';
+    display_create(1);
 }
 function create2x2(){
     const div = document.getElementById("matrixAuto2x2");
@@ -70,6 +80,7 @@ function create2x2(){
     }
     div.style.display = 'block';
     saveMatrix.style.display = 'block';
+    display_create(order);
 }
 function create3x3(){
     const div = document.getElementById("matrixAuto3x3");
@@ -90,6 +101,7 @@ function create3x3(){
     }
     div.style.display = 'block';
     saveMatrix.style.display = 'block';
+    display_create(order);
 }
 function create4x4(){
     // Variavel div pega a div especifica para a matriz selecionada
@@ -114,6 +126,7 @@ function create4x4(){
     div.style.display = 'block';
     // Faz com que o botão de salvar a matriz fique visível
     saveMatrix.style.display = 'block';
+    display_create(order);
 }
 function generateMatrix(){
     // Remover matriz caso exista uma para evitar conflitos
@@ -124,16 +137,12 @@ function generateMatrix(){
     const order = document.getElementById("matrixOrder").value;
     if(order == 1){
         createScalar();
-        alert("Um escalar foi criado.");
     } else if(order == 2){
         create2x2();
-        alert("Uma matriz 2x2 foi criada.");
     } else if(order == 3){
         create3x3();
-        alert("Uma matriz 3x3 foi criada.");
     } else if(order == 4){
         create4x4();
-        alert("Uma matriz 4x4 foi criada.");
     }
     select.disabled = true;
 }
