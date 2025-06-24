@@ -14,22 +14,44 @@ let matArr = {
     Dm: []
 }
 //Função que mostra o display a matriz criada
-function display_create(order){
+function display_create(order, action){
+    // A entrada 'order' significa a ordem da matriz para fins de identificação da matriz criada
+
+    // A entrada action pode variar entre 0, 1, 2 e numeros diferentes de 0, 1, 2
+    // Action valendo 0 a mensagem exibe matriz excluida
+    // Action valendo 1 a mensagem exibe matriz criada
+    // Action valendo 2 a mensagem exibe matriz resetada
+    // Action valendo outro valor, como -1 por exemplo, não será exibida nenhuma mensagem
+
+    // Para o pleno funcionamento da função, deve-se colocar tanto order, quanto action na chamada da função como 0
+    // caso a exclusão seja requerida
+
     // Variável que pega o elemento 'p' da div display
     const p = document.getElementById("displayText");
-    if(order === 1){
-        p.innerHTML = "Escalar criado";
+    if(action === 1){
+        if(order === 1){
+            p.innerHTML = "Escalar criado";
+        }
+        p.innerHTML = `Matriz ${order}x${order} criada`;
+    } else if(order === 0 && action === 0){
+        p.innerHTML = "Matriz excluída"
+    } if(action === 2){
+        p.innerHTML = "Matriz resetada"
     }
-    p.innerHTML = `Matriz ${order}x${order} criada`;
+       
 }
+
+
+
 // Seleciona o botão de salvar os elementos da matriz
 const saveMatrix = document.getElementById("saveMatrix");
-function removeMatrix(){
+function removeMatrix(action){
     const select = document.getElementById("matrixOrder");
     const div = document.querySelectorAll(".matrixAutoCommon");
     div.forEach(div => div.innerHTML = '');
     saveMatrix.style.display = 'none';
     select.disabled = false;
+    display_create(0,action);
 }
 
 function resetMatrix(){
@@ -47,7 +69,7 @@ function resetMatrix(){
     // Zera a ordem da matriz
     mat[matrixNameValue] = 0;
     // Completa a ação removendo os inputs da matriz
-    removeMatrix();
+    removeMatrix(2);
 }
 function createScalar(){
     const div = document.getElementById("scalar");
@@ -59,7 +81,7 @@ function createScalar(){
     div.style.display = 'block';
     div.appendChild(input);
     saveMatrix.style.display = 'block';
-    display_create(1);
+    display_create(1, 1);
 }
 function create2x2(){
     const div = document.getElementById("matrixAuto2x2");
@@ -80,7 +102,7 @@ function create2x2(){
     }
     div.style.display = 'block';
     saveMatrix.style.display = 'block';
-    display_create(order);
+    display_create(order, 1);
 }
 function create3x3(){
     const div = document.getElementById("matrixAuto3x3");
@@ -101,7 +123,7 @@ function create3x3(){
     }
     div.style.display = 'block';
     saveMatrix.style.display = 'block';
-    display_create(order);
+    display_create(order, 1);
 }
 function create4x4(){
     // Variavel div pega a div especifica para a matriz selecionada
@@ -126,11 +148,11 @@ function create4x4(){
     div.style.display = 'block';
     // Faz com que o botão de salvar a matriz fique visível
     saveMatrix.style.display = 'block';
-    display_create(order);
+    display_create(order, 1);
 }
 function generateMatrix(){
     // Remover matriz caso exista uma para evitar conflitos
-    removeMatrix();
+    removeMatrix(0);
     // Variavel que seleciona o Select responsável por variar a ordem da matriz
     const select = document.getElementById("matrixOrder");
     // Pega o valor da ordem selecionada
@@ -180,6 +202,9 @@ function getMatrix(){
     }
     // matArr, o objeto que armazena os elementos da matriz é atualizado usando este comando
     matArr[matrixArrayId] = matrixValues;
+
+    // Exibe mensagem no display que a matriz foi salva
+    document.getElementById("displayText").innerHTML = "Matriz salva";
 }
 
 // Código para passar para o próximo input ao apertar 'enter'
@@ -225,7 +250,7 @@ function matrixSlider(){
     let matrixArrayId = selected.getAttribute("matrixArray");
 
     if(mat[matrixNameValue] == 0){
-        removeMatrix();
+        removeMatrix(-1);
         select.disabled = false;
     } else{
         matrixValues = matArr[matrixArrayId];

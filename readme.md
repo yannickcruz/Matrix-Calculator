@@ -7,18 +7,19 @@ Determinantes, Transposta, Inversa, Adição, Subtração e Multiplicação.
 
 ## Avanços no desenvolvimento
 
-Selecionar matrizes ✅
-Selecionar ordem de matrizes ✅
-Criar matrizes ✅
-Resetar matrizes ✅
-Salvar valores nas matrizes ✅
-Deletar valores nas matrizes ✅
+Selecionar matrizes ✅ <br/>
+Selecionar ordem de matrizes ✅ <br/>
+Criar matrizes ✅ <br/>
+Resetar matrizes ✅ <br/>
+Salvar valores nas matrizes ✅ <br/>
+Deletar valores nas matrizes ✅ <br/>
 Editar valores nas matrizes ✅
-Display de eventos ✅
-Salvar matrizes e valores no Local Storage ❌
-Cálculo de determinante ❌
-Cálculo de transposta ❌
-Cálculo de inversa ❌
-Cálculo de adição ❌
-Cálculo de subtração ❌
-Cálculo de multiplicação ❌
+Display de eventos ✅ <br/>
+Salvar matrizes e valores no Local Storage ❌ <br/>
+Cálculo de determinante ❌ <br/>
+Cálculo de transposta ❌ <br/>
+Cálculo de inversa ❌ <br/>
+Cálculo de adição ❌ <br/>
+Cálculo de subtração ❌ <br/>
+Cálculo de multiplicação ❌ <br/>
+
