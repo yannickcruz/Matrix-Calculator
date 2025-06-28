@@ -91,7 +91,7 @@ for(let i = 0; i < ordem; i++){
         cofatores[i][j] = cofatores[i][j] / determinante;
     }
 }
-console.log(`Matriz inversa é: ${cofatores}`);
+console.log(`Matriz inversa e: ${cofatores}`);
 
 //for(let aux = 0; aux < Math.pow(ordem, 2); aux++)
 
