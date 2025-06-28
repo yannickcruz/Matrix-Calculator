@@ -13,6 +13,10 @@ let matArr = {
     Cm: [],
     Dm: []
 }
+function localStorage(){
+    
+}
+
 //Função que mostra o display a matriz criada
 function display_create(order, action){
     // A entrada 'order' significa a ordem da matriz para fins de identificação da matriz criada
