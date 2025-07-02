@@ -115,3 +115,13 @@ section{
     font-size: 1.25rem;
     margin-left: 0.2rem;
 }
+
+.calcs{
+    display: none;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.calcs label{
+    display: flex;
+    flex-direction: column;
+}

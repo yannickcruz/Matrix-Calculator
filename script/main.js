@@ -13,6 +13,35 @@ let matArr = {
     Cm: [],
     Dm: []
 }
+// Matrix value quantifier: contabiliza quantas matrizes tiveram valores salvos para criar as opções de cálculos
+function matValueQtr(reset){
+    const calcsDiv = document.querySelector(".calcs");
+    const chooseCalc = document.getElementById("chooseCalc");
+    const singleMatrix = document.getElementById("singleMatrix");
+    const multiEnable = document.getElementById("multiEnable");
+
+    // Esconder a div "calcs" caso não tenha matrizes com valores salvos
+    if(reset === true){
+        let verify = 0;
+        let size = 0;
+        for(let key in matArr){
+            size++;
+            if(matArr[key].length == 0){
+                verify++;
+            }
+        }
+        if(verify == size) calcsDiv.style.display = "none";
+    }
+
+    // Deixa a div "calcs" visível caso uma matriz seja criada
+    for(let key in matArr){
+        if(matArr[key].length != 0){
+            calcsDiv.style.display = "flex";
+        }
+    }
+}
+
+
 function localStorage(){
     
 }
@@ -74,6 +103,7 @@ function resetMatrix(){
     mat[matrixNameValue] = 0;
     // Completa a ação removendo os inputs da matriz
     removeMatrix(2);
+    matValueQtr(true);
 }
 function createScalar(){
     const div = document.getElementById("scalar");
@@ -184,6 +214,7 @@ function save(){
     mat[matrixNameValue] = order;
 
     console.log(`Matriz ${matrixNameValue} agora possui ordem ${order}`); 
+    //console.log(matArr.Am);
     generateMatrix();
 
 }
@@ -209,6 +240,7 @@ function getMatrix(){
 
     // Exibe mensagem no display que a matriz foi salva
     document.getElementById("displayText").innerHTML = "Matriz salva";
+    matValueQtr();
 }
 
 // Código para passar para o próximo input ao apertar 'enter'
