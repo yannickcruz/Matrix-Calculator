@@ -16,9 +16,10 @@ let matArr = {
 // Matrix value quantifier: contabiliza quantas matrizes tiveram valores salvos para criar as opções de cálculos
 function matValueQtr(reset){
     const calcsDiv = document.querySelector(".calcs");
-    const chooseCalc = document.getElementById("chooseCalc");
+    const multiMatrix = document.querySelectorAll(".multiMatrix");
     const singleMatrix = document.getElementById("singleMatrix");
     const multiEnable = document.getElementById("multiEnable");
+    let value = 0;
 
     // Esconder a div "calcs" caso não tenha matrizes com valores salvos
     if(reset === true){
@@ -36,7 +37,27 @@ function matValueQtr(reset){
     // Deixa a div "calcs" visível caso uma matriz seja criada
     for(let key in matArr){
         if(matArr[key].length != 0){
+            value++;
             calcsDiv.style.display = "flex";
+        }
+
+        // Condicional que faz as opções de cálculo que dependem de 2 matrizes ficarem disponíveis ou não
+        if(value >= 2){
+            // Seletor de matriz 2 é liberado caso tenha mais de 2 matrizes salvas
+            multiEnable.style.display = "flex";
+
+            for(let i = 0; i < multiMatrix.length; i++){
+                // Opções de cálculo são liberadas
+                multiMatrix[i].disabled = false;
+            }
+        } else{
+            // Seletor de matriz é oculto
+            multiEnable.style.display = "none";
+
+            for(let i = 0; i < multiMatrix.length; i++){
+                // Opções são travadas
+                multiMatrix[i].disabled = true;
+            }
         }
     }
 }

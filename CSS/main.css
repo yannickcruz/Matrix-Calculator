@@ -125,3 +125,7 @@ section{
     display: flex;
     flex-direction: column;
 }
+
+#multiEnable{
+    display: none;
+}
