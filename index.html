@@ -53,31 +53,31 @@
             <div class="calcs">
                 <label for="Calc Choose">
                     <span class="chooseTitle">Selecione um tipo de cálculo</span>
-                    <select name="Choose Calc" id="chooseCalc">
-                        <option value="determinante">Determinante</option>
-                        <option value="transposta">Transposta</option>
-                        <option value="inversa">Inversa</option>
-                        <option value="soma" class="multiMatrix" disabled>Soma</option>
-                        <option value="sub" class="multiMatrix" disabled>Subtração</option>
-                        <option value="multi" class="multiMatrix" disabled>Multiplicação</option>
+                    <select name="Choose Calc" id="chooseCalc" onchange="multiMatrixCalcEnable()">
+                        <option value="determinante" class="oneMatrix">Determinante</option>
+                        <option value="transposta" class="oneMatrix">Transposta</option>
+                        <option value="inversa" class="oneMatrix">Inversa</option>
+                        <option value="soma" class="multiMatrix">Soma</option>
+                        <option value="sub" class="multiMatrix">Subtração</option>
+                        <option value="multi" class="multiMatrix">Multiplicação</option>
                     </select>
                 </label>
                 <label for="Matrix Select" id="singleMatrix">
                     <span class="chooseTitle">Selecione a matriz 1</span>
-                    <select name="" class="singleOps">
-                        <option value="A" matrixArray="Am">A</option>
-                        <option value="B" matrixArray="Bm">B</option>
-                        <option value="C" matrixArray="Cm">C</option>
-                        <option value="D" matrixArray="Dm">D</option>
+                    <select name="" id="singleOps">
+                        <option value="A" matrixArray="Am" disabled>A</option>
+                        <option value="B" matrixArray="Bm" disabled>B</option>
+                        <option value="C" matrixArray="Cm" disabled>C</option>
+                        <option value="D" matrixArray="Dm" disabled>D</option>
                     </select>
                 </label>
                 <label for="Matrix Select" id="multiEnable">
                     <span class="chooseTitle">Selecione a matriz 2</span>
                     <select name="" id="multiOps">
-                        <option value="A" matrixArray="Am">A</option>
-                        <option value="B" matrixArray="Bm">B</option>
-                        <option value="C" matrixArray="Cm">C</option>
-                        <option value="D" matrixArray="Dm">D</option>
+                        <option value="A" matrixArray="Am" disabled>A</option>
+                        <option value="B" matrixArray="Bm" disabled>B</option>
+                        <option value="C" matrixArray="Cm" disabled>C</option>
+                        <option value="D" matrixArray="Dm" disabled>D</option>
                     </select>
                 </label>
             </div>

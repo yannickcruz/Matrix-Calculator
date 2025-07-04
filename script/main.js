@@ -13,12 +13,15 @@ let matArr = {
     Cm: [],
     Dm: []
 }
+
 // Matrix value quantifier: contabiliza quantas matrizes tiveram valores salvos para criar as opções de cálculos
 function matValueQtr(reset){
     const calcsDiv = document.querySelector(".calcs");
-    const multiMatrix = document.querySelectorAll(".multiMatrix");
+    //const oneMatrix = document.querySelectorAll(".oneMatrix");
     const singleMatrix = document.getElementById("singleMatrix");
     const multiEnable = document.getElementById("multiEnable");
+    const firstSelect = document.getElementById("singleOps");
+    const secSelect = document.getElementById("multiOps");
     let value = 0;
 
     // Esconder a div "calcs" caso não tenha matrizes com valores salvos
@@ -40,26 +43,44 @@ function matValueQtr(reset){
             value++;
             calcsDiv.style.display = "flex";
         }
+    }
 
-        // Condicional que faz as opções de cálculo que dependem de 2 matrizes ficarem disponíveis ou não
-        if(value >= 2){
-            // Seletor de matriz 2 é liberado caso tenha mais de 2 matrizes salvas
-            multiEnable.style.display = "flex";
-
-            for(let i = 0; i < multiMatrix.length; i++){
-                // Opções de cálculo são liberadas
-                multiMatrix[i].disabled = false;
+    for(let key in mat){
+        if(mat[key] != 0){
+            for(let i = 0; i < firstSelect.length; i++){
+                if(key == firstSelect[i].value){
+                    firstSelect[i].disabled = false;
+                    secSelect[i].disabled = false;
+                }
             }
         } else{
-            // Seletor de matriz é oculto
-            multiEnable.style.display = "none";
-
-            for(let i = 0; i < multiMatrix.length; i++){
-                // Opções são travadas
-                multiMatrix[i].disabled = true;
+            for(let i = 0; i < firstSelect.length; i++){
+                if(key == firstSelect[i].value){
+                    firstSelect[i].disabled = true;
+                    secSelect[i].disabled = true;
+                }
             }
         }
     }
+
+}
+
+function multiMatrixCalcEnable(){
+    const select = document.getElementById("chooseCalc");
+    const multiMatrix = select.querySelectorAll("option.multiMatrix");
+    const multiEnable = document.getElementById("multiEnable");
+    const singleMatrix = document.getElementById("singleMatrix");
+    const selectedOption = Array.from(multiMatrix).some(option => option.selected);
+
+        if(selectedOption){
+            multiEnable.style.display = "flex";
+            singleMatrix.style.display = "flex";
+
+        } else{
+            singleMatrix.style.display = "none";
+            multiEnable.style.display = "none";
+        }
+
 }
 
 
