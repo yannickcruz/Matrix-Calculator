@@ -40,8 +40,10 @@ function matValueQtr(reset){
     // Deixa a div "calcs" visível caso uma matriz seja criada
     for(let key in matArr){
         if(matArr[key].length != 0){
+            console.log(`matValueqtr matArr.length: ${matArr[key].length}`);
             value++;
             calcsDiv.style.display = "flex";
+            singleMatrix.style.display = "flex";
         }
     }
 
@@ -74,19 +76,14 @@ function multiMatrixCalcEnable(){
 
         if(selectedOption){
             multiEnable.style.display = "flex";
-            singleMatrix.style.display = "flex";
 
         } else{
-            singleMatrix.style.display = "none";
             multiEnable.style.display = "none";
         }
 
 }
 
 
-function localStorage(){
-    
-}
 
 //Função que mostra o display a matriz criada
 function display_create(order, action){
@@ -144,6 +141,7 @@ function resetMatrix(){
     // Zera a ordem da matriz
     mat[matrixNameValue] = 0;
     // Completa a ação removendo os inputs da matriz
+    localStorageMod('reset');
     removeMatrix(2);
     matValueQtr(true);
 }
@@ -283,6 +281,7 @@ function getMatrix(){
     // Exibe mensagem no display que a matriz foi salva
     document.getElementById("displayText").innerHTML = "Matriz salva";
     matValueQtr();
+    localStorageMod('save');
 }
 
 // Código para passar para o próximo input ao apertar 'enter'
@@ -343,6 +342,46 @@ function matrixSlider(){
         }
     }
 }
+
+function localStorageMod(action){
+    function lsmSave(){
+        localStorage.setItem('matrixOrderValues', JSON.stringify(mat));
+        localStorage.setItem('matrixValues', JSON.stringify(matArr));
+    }
+
+    if(action === 'save') lsmSave();
+
+    if(action === 'reset'){
+        lsmSave();
+        console.log("Matriz resetada no local Storage");
+    }
+    if(action === 'load'){
+        const savedOrder = localStorage.getItem('matrixOrderValues');
+        const savedValues = localStorage.getItem('matrixValues');
+
+        if(savedOrder && savedValues){
+            const order = JSON.parse(savedOrder);
+            const values = JSON.parse(savedValues);
+            for(const key in order){
+                if(order[key] == 0){
+                    mat[key] = 0;
+                } else mat[key] = order[key];
+            }
+            for(const key in values){
+                if(values[key].length == 0){
+                    matArr[key] = [];
+                } else{
+                    matArr[key] = values[key];
+                }
+                
+            }
+        }
+        matrixSlider();
+        matValueQtr();
+    }
+}
+
+localStorageMod('load');
 
 
 
