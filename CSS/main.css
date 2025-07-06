@@ -39,7 +39,7 @@ section{
     color: var(--white);
 }
 
-.choose button, #reset{
+.choose button, #reset, #confirm{
     padding: 10px;
     background-color: var(--white);
     color: var(--black);
@@ -49,7 +49,7 @@ section{
     border-radius: 5px;
     font-family: 'Barlow', serif;
 }
-.choose button:hover, #saveMatrix:hover, #reset:hover{
+.choose button:hover, #saveMatrix:hover, #reset:hover, #confirm:hover{
     background-color: var(--std_orange);
     color: var(--white);
 }

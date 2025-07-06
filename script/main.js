@@ -383,6 +383,33 @@ function localStorageMod(action){
 
 localStorageMod('load');
 
+function displayCalc(msg){
+    const p = document.getElementById("displayText");
+    p.innerHTML = msg;
+}
+
+function calcFunc(){
+    const calcType = document.getElementById("chooseCalc").value;
+    const order = document.getElementById("matrixOrder").value;
+    let matrix1 = document.getElementById("singleOps");
+    let matrix2 = document.getElementById("multiEnable");
+
+    if(matrix1.value != ""){
+        matrix1 = matrix1.value;
+    } else{
+        displayCalc("ERRO! Selecione uma matriz válida!");
+        return 0;
+    } 
+
+    if(matrix2.style.display == 'flex' && matrix2.value != ""){
+        matrix2 = matrix2.value;
+    } else{
+        displayCalc("ERRO! Selecione uma matriz válida!");
+        return 0;
+    } 
+    
+}
+
 
 
 
