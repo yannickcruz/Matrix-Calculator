@@ -394,12 +394,14 @@ function calcFunc(){
     let matrix1 = document.getElementById("singleOps");
     let matrix2 = document.getElementById("multiEnable");
 
+
     if(matrix1.value != ""){
         matrix1 = matrix1.value;
     } else{
         displayCalc("ERRO! Selecione uma matriz válida!");
         return 0;
     } 
+    
 
     if(matrix2.style.display == 'flex' && matrix2.value != ""){
         matrix2 = matrix2.value;
@@ -407,7 +409,13 @@ function calcFunc(){
         displayCalc("ERRO! Selecione uma matriz válida!");
         return 0;
     } 
-    
+  
+}
+
+function det(type, order, m1){
+    if(order == 1){
+        displayCalc(`Det de ${m1} é:`)
+    }
 }
 
 
