@@ -14,6 +14,19 @@ let matArr = {
     Dm: []
 }
 
+//Event Listeners
+const matrixNameSelect = document.getElementById("matrixName");
+const saveBtn = document.getElementById("save");
+const resetBtn = document.getElementById("reset");
+const saveMatValuesBtn = document.getElementById("saveMatrix");
+const confirmBtn = document.getElementById("confirm");
+
+matrixNameSelect.addEventListener('change', matrixSlider);
+saveBtn.addEventListener('click', save);
+resetBtn.addEventListener('click', resetMatrix);
+saveMatValuesBtn.addEventListener('click', getMatrix);
+confirmBtn.addEventListener('click', calcFunc);
+
 // Matrix value quantifier: contabiliza quantas matrizes tiveram valores salvos para criar as opções de cálculos
 function matValueQtr(reset){
     const calcsDiv = document.querySelector(".calcs");
@@ -270,7 +283,7 @@ function getMatrix(){
     let elemento;
     let valor;
 
-    for(i = 0; i < inputs.length; i++){
+    for(let i = 0; i < inputs.length; i++){
         elemento = inputs[i];
         valor = parseFloat(elemento.value) || 0;
         matrixValues.push(valor);

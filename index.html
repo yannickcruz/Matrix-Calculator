@@ -14,7 +14,7 @@
             <div class="choose">
                 <label for="matrix name">
                     <span class="chooseTitle">Selecione uma matriz</span>
-                    <select name="matrixName" id="matrixName" onchange="matrixSlider()">
+                    <select name="matrixName" id="matrixName">
                         <option value="A" matrixArray="Am">A</option>
                         <option value="B" matrixArray="Bm">B</option>
                         <option value="C" matrixArray="Cm">C</option>
@@ -30,8 +30,8 @@
                         <option value="4">4</option>
                     </select>
                 </label>
-                <button id="save" onclick="save()">Salvar</button>
-                <button id="reset" onclick="resetMatrix()">Resetar</button>
+                <button id="save" >Salvar</button>
+                <button id="reset" ">Resetar</button>
             </div>
             <div id="display">
                 <p id="displayText"></p>
@@ -49,7 +49,7 @@
             <div id="matrixAuto4x4" class="matrixAutoCommon">
                 
             </div>
-            <button id="saveMatrix" onclick="getMatrix()">Salvar Matriz</button>
+            <button id="saveMatrix">Salvar Matriz</button>
             <div class="calcs">
                 <label for="Calc Choose">
                     <span class="chooseTitle">Selecione um tipo de cálculo</span>
@@ -80,10 +80,10 @@
                         <option value="D" matrixArray="Dm" disabled>D</option>
                     </select>
                 </label>
-                <button id="confirm" onclick="calcFunc()">Realizar cáculo</button>
+                <button id="confirm">Realizar cáculo</button>
             </div>
         </div>
     </section>
-    <script src="./script/main.js"></script>
+    <script type="module" src="./script/main.js"></script>
 </body>
 </html>
