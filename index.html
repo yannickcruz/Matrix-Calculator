@@ -54,7 +54,7 @@
                 <label for="Calc Choose">
                     <span class="chooseTitle">Selecione um tipo de cálculo</span>
                     <select name="Choose Calc" id="chooseCalc" onchange="multiMatrixCalcEnable()">
-                        <option value="determinante" class="oneMatrix">Determinante</option>
+                        <option value="det" class="oneMatrix">Determinante</option>
                         <option value="transposta" class="oneMatrix">Transposta</option>
                         <option value="inversa" class="oneMatrix">Inversa</option>
                         <option value="soma" class="multiMatrix">Soma</option>
@@ -74,10 +74,10 @@
                 <label for="Matrix Select" id="multiEnable">
                     <span class="chooseTitle">Selecione a matriz 2</span>
                     <select name="" id="multiOps">
-                        <option value="A" matrixArray="Am" disabled>A</option>
-                        <option value="B" matrixArray="Bm" disabled>B</option>
-                        <option value="C" matrixArray="Cm" disabled>C</option>
-                        <option value="D" matrixArray="Dm" disabled>D</option>
+                        <option value="A" data-matrixArray="Am" disabled>A</option>
+                        <option value="B" data-matrixArray="Bm" disabled>B</option>
+                        <option value="C" data-matrixArray="Cm" disabled>C</option>
+                        <option value="D" data-matrixArray="Dm" disabled>D</option>
                     </select>
                 </label>
                 <button id="confirm">Realizar cáculo</button>
@@ -85,5 +85,6 @@
         </div>
     </section>
     <script type="module" src="./script/main.js"></script>
+    <script type="module" src="./script/calc.js"></script>
 </body>
 </html>

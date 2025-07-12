@@ -1,3 +1,7 @@
+import { det } from "./calc.js";
+
+
+
 // Objeto que armazena a ordem das matrizes
 let mat = {
     A: 0,
@@ -21,11 +25,19 @@ const resetBtn = document.getElementById("reset");
 const saveMatValuesBtn = document.getElementById("saveMatrix");
 const confirmBtn = document.getElementById("confirm");
 
+
+const singleMatrixSelect = document.getElementById("singleOps");
+const secMatrixSelect = document.getElementById("multiEnable");
+
 matrixNameSelect.addEventListener('change', matrixSlider);
 saveBtn.addEventListener('click', save);
 resetBtn.addEventListener('click', resetMatrix);
 saveMatValuesBtn.addEventListener('click', getMatrix);
 confirmBtn.addEventListener('click', calcFunc);
+
+
+singleMatrixSelect.addEventListener('change', matrixSlider);
+// continuar
 
 // Matrix value quantifier: contabiliza quantas matrizes tiveram valores salvos para criar as opções de cálculos
 function matValueQtr(reset){
@@ -403,10 +415,14 @@ function displayCalc(msg){
 
 function calcFunc(){
     const calcType = document.getElementById("chooseCalc").value;
-    const order = document.getElementById("matrixOrder").value;
+    const order = parseInt(document.getElementById("matrixOrder").value);
     let matrix1 = document.getElementById("singleOps");
     let matrix2 = document.getElementById("multiEnable");
-
+    let m1Selected = matrix1.options[matrix1.selectedIndex];
+    let m1 = m1Selected.getAttribute("matrixArray");
+    
+    m1 = matArr[m1];
+    //console.log(m1);
 
     if(matrix1.value != ""){
         matrix1 = matrix1.value;
@@ -416,19 +432,42 @@ function calcFunc(){
     } 
     
 
-    if(matrix2.style.display == 'flex' && matrix2.value != ""){
-        matrix2 = matrix2.value;
-    } else{
-        displayCalc("ERRO! Selecione uma matriz válida!");
-        return 0;
-    } 
+    if(matrix2.style.display === 'flex'){
+        if(matrix2.value != ""){
+            let m2Selected = matrix2.options[matrix2.selectedIndex];
+            let m2 = m2Selected.dataset.matrixArray;
+            matrix2 = matrix2.value;
+        } else{
+            displayCalc("ERRO! Selecione uma matriz válida!");
+            return 0;
+        }
+    }
+    //console.log(m1);
+    
+    if(calcType === 'det'){
+        let result = det(order, matrixExtractor(m1, order));
+        displayCalc(`O determinante é ${result}`);
+    }
   
 }
 
-function det(type, order, m1){
-    if(order == 1){
-        displayCalc(`Det de ${m1} é:`)
+function matrixExtractor(inputs, order){
+    let matrix = [];
+    let count = 0;
+    let col = 0;
+    let col2 = 0;
+    count = order;
+    for(let i = 0; i < order; i++){
+        matrix[i] = [];
+        for(let j = count - order; j < count; j++){
+            matrix[i][col] = inputs[col2];
+            col++;
+            col2++;
+        }
+        col = 0;
+        count += order;
     }
+    return matrix;
 }
 
 
