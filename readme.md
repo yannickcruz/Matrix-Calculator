@@ -17,7 +17,7 @@ Editar valores nas matrizes ✅
 Display de eventos ✅ <br/>
 Botões de seleção de cálculos ✅ <br/>
 Salvar matrizes e valores no Local Storage ✅ <br/>
-Cálculo de determinante ❌ <br/>
+Cálculo de determinante ✅ <br/>
 Cálculo de transposta ❌ <br/>
 Cálculo de inversa ❌ <br/>
 Cálculo de adição ❌ <br/>
