@@ -66,8 +66,20 @@ export function det(order, m){
             }
             return detSum;  
         }
-    } 
+    }   
+}
 
+export function transposta(m, order){
+    let trans = [];
+    for(let k = 0; k < order; k++){
+        trans[k] = new Array(order).fill(0);
+    }
+    for(let i = 0; i < order; i++){
+        for(let j = 0; j < order; j++){
+            trans[j][i] = m[i][j];
+        }
+    }
     
+    return trans;
 }
 

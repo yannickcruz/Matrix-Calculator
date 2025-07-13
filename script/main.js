@@ -1,4 +1,4 @@
-import { det } from "./calc.js";
+import { det, transposta } from "./calc.js";
 
 
 
@@ -12,6 +12,13 @@ let mat = {
 
 // Objeto que armazena arrays contendo todos os elementos da matriz digitada pelo usuário
 let matArr = {
+    Am: [],
+    Bm: [],
+    Cm: [],
+    Dm: []
+}
+
+let resultMatArr = {
     Am: [],
     Bm: [],
     Cm: [],
@@ -335,7 +342,6 @@ function matrixSlider(){
 
     //Pega a ordem da matriz previamente salvo
     const matrixOrder = mat[matrixNameValue];
-    console.log(`Order vale: ${matrixOrder}`);
 
     //Variável para armazenar os valores dos inputs das matrizes, caso estejam salvos
     let matrixValues = [];
@@ -411,7 +417,6 @@ function displayCalc(msg){
 
 function calcFunc(){
     const calcType = document.getElementById("chooseCalc").value;
-    const order = parseInt(document.getElementById("matrixOrder").value);
     let matrix1 = document.getElementById("singleOps");
     let matrix2 = document.getElementById("multiEnable");
     let m2Selected;
@@ -442,10 +447,16 @@ function calcFunc(){
             return 0;
         }
     }
+
+    const order = parseInt(mat[matrix1]);
     
     if(calcType === 'det'){
         let result = det(order, matrixExtractor(m1, order));
         displayCalc(`O determinante é ${result}`);
+    }
+    if(calcType === 'transposta'){
+        let result = transposta(matrixExtractor(m1, order), order);
+        displayCalc(`A transposta é ${result}`);
     }
   
 }
@@ -469,7 +480,9 @@ export function matrixExtractor(inputs, order){
     return matrix;
 }
 
-
+function generateResultMatrix(){
+    const inputs = document.querySelectorAll(".matrixAutoCommon input");
+}
 
 
 
