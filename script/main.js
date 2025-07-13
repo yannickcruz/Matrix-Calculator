@@ -25,10 +25,6 @@ const resetBtn = document.getElementById("reset");
 const saveMatValuesBtn = document.getElementById("saveMatrix");
 const confirmBtn = document.getElementById("confirm");
 
-
-const singleMatrixSelect = document.getElementById("singleOps");
-const secMatrixSelect = document.getElementById("multiEnable");
-
 matrixNameSelect.addEventListener('change', matrixSlider);
 saveBtn.addEventListener('click', save);
 resetBtn.addEventListener('click', resetMatrix);
@@ -36,7 +32,7 @@ saveMatValuesBtn.addEventListener('click', getMatrix);
 confirmBtn.addEventListener('click', calcFunc);
 
 
-singleMatrixSelect.addEventListener('change', matrixSlider);
+//singleMatrixSelect.addEventListener('change', matrixSlider);
 // continuar
 
 // Matrix value quantifier: contabiliza quantas matrizes tiveram valores salvos para criar as opções de cálculos
@@ -418,13 +414,16 @@ function calcFunc(){
     const order = parseInt(document.getElementById("matrixOrder").value);
     let matrix1 = document.getElementById("singleOps");
     let matrix2 = document.getElementById("multiEnable");
-    let m1Selected = matrix1.options[matrix1.selectedIndex];
-    let m1 = m1Selected.getAttribute("matrixArray");
+    let m2Selected;
+    let m2;
+    let m1Selected;
+    let m1;
     
-    m1 = matArr[m1];
-    //console.log(m1);
 
     if(matrix1.value != ""){
+        m1Selected = matrix1.options[matrix1.selectedIndex];
+        m1 = m1Selected.getAttribute("matrixArray");
+        m1 = matArr[m1];
         matrix1 = matrix1.value;
     } else{
         displayCalc("ERRO! Selecione uma matriz válida!");
@@ -434,15 +433,15 @@ function calcFunc(){
 
     if(matrix2.style.display === 'flex'){
         if(matrix2.value != ""){
-            let m2Selected = matrix2.options[matrix2.selectedIndex];
-            let m2 = m2Selected.dataset.matrixArray;
+            m2Selected = matrix2.options[matrix2.selectedIndex];
+            m2 = m2Selected.getAttribute("matrixArray");
+            m2 = matArr[m2];
             matrix2 = matrix2.value;
         } else{
             displayCalc("ERRO! Selecione uma matriz válida!");
             return 0;
         }
     }
-    //console.log(m1);
     
     if(calcType === 'det'){
         let result = det(order, matrixExtractor(m1, order));
@@ -451,7 +450,7 @@ function calcFunc(){
   
 }
 
-function matrixExtractor(inputs, order){
+export function matrixExtractor(inputs, order){
     let matrix = [];
     let count = 0;
     let col = 0;
@@ -469,7 +468,6 @@ function matrixExtractor(inputs, order){
     }
     return matrix;
 }
-
 
 
 
