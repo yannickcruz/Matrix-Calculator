@@ -23,4 +23,5 @@ Cálculo de inversa ❌ <br/>
 Cálculo de adição ❌ <br/>
 Cálculo de subtração ❌ <br/>
 Cálculo de multiplicação ❌ <br/>
+Deployment ❌
 
