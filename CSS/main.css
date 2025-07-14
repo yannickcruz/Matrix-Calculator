@@ -54,7 +54,7 @@ section{
     color: var(--white);
 }
 #matrixFill{
-    display: block;
+    display: none;
     color: var(--white);
     margin-top: 1rem;
 }
@@ -131,4 +131,33 @@ section{
 }
 #singleMatrix{
     display: none;
+}
+
+#matrixResult{
+    display: none;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    background-color: var(--display);
+}
+#matrixResult td{
+    display: table-cell;
+    border: 2px solid var(--white);
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    color: var(--white);
+    font-size: 1.5rem;
+    font-family: 'BebasNeue', serif;
+}
+#matrixResult tr:first-child td {
+    border-top: 3px solid var(--white);
+}
+#matrixResult tr:last-child td {
+    border-bottom: 3px solid var(--white);
+}
+#matrixResult td:first-child {
+    border-left: 3px solid var(--white);
+}
+#matrixResult td:last-child {
+    border-right: 3px solid var(--white);
 }

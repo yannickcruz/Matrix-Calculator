@@ -146,12 +146,15 @@ function display_create(order, action){
 // Seleciona o botão de salvar os elementos da matriz
 const saveMatrix = document.getElementById("saveMatrix");
 function removeMatrix(action){
+    const matrixFillTxt = document.getElementById("matrixFill");
     const select = document.getElementById("matrixOrder");
     const div = document.querySelectorAll(".matrixAutoCommon");
     div.forEach(div => div.innerHTML = '');
     saveMatrix.style.display = 'none';
     select.disabled = false;
+    action == -1 ? select.disabled = true : false;
     display_create(0,action);
+    matrixFillTxt.style.display = 'none';
 }
 
 function resetMatrix(){
@@ -259,6 +262,8 @@ function generateMatrix(){
     const select = document.getElementById("matrixOrder");
     // Pega o valor da ordem selecionada
     const order = document.getElementById("matrixOrder").value;
+    const matrixFillTxt = document.getElementById("matrixFill");
+    matrixFillTxt.style.display = 'flex';
     if(order == 1){
         createScalar();
     } else if(order == 2){
@@ -368,6 +373,7 @@ function matrixSlider(){
             inputs[i].value = matrixValues[i] ?? '';
         }
     }
+    generateResultMatrix(0, 0, 0);
 }
 
 function localStorageMod(action){
@@ -456,8 +462,13 @@ function calcFunc(){
     }
     if(calcType === 'transposta'){
         let result = transposta(matrixExtractor(m1, order), order);
-        displayCalc(`A transposta é ${result}`);
+        displayCalc(`Transposta da matriz criada.`);
+        removeMatrix(-1);
+        generateResultMatrix(0, 0, 0);
+        generateResultMatrix(order, result);
     }
+
+
   
 }
 
@@ -480,8 +491,26 @@ export function matrixExtractor(inputs, order){
     return matrix;
 }
 
-function generateResultMatrix(){
-    const inputs = document.querySelectorAll(".matrixAutoCommon input");
+function generateResultMatrix(order, matrix, action){
+    const resultTable = document.getElementById("matrixResult");
+
+    if(action === 0){
+        resultTable.innerHTML = '';
+        resultTable.style.display = 'none';
+        return 0;
+    }
+    for(let trCount = 0; trCount < order; trCount++){
+        const tr = document.createElement("tr");
+        resultTable.appendChild(tr);
+        for(let tdCount = 0; tdCount < order; tdCount++){
+            const td = document.createElement("td");
+            tr.appendChild(td);
+            td.textContent = matrix[trCount][tdCount];
+        }
+    }
+    resultTable.style.display = 'block';
+
+    
 }
 
 
