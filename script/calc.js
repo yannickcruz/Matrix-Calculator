@@ -11,63 +11,32 @@ export function det(order, m){
             return mainDiag+secDiag;
         }
 
-        if(order === 3){
-            let cofactorMatrix = [];
-            for(let i = 0; i < order-1; i++){
-                cofactorMatrix[i] = new Array(order-1).fill(0);
-            }
+        if(order >= 3){
             let detSum = 0;
-            let cfLine = 0;
-            let cfRow = 0;
-            let row = 1;
 
-            for(let i = 0; i < order; i++){
-                for(let mLine = 0; mLine < order; mLine++){
+            for(let col = 0; col < order; col++){
+                let cofactorMatrix = [];
+                let cfLine = 0;
+
+                for(let mLine = 1; mLine < order; mLine++){
+                    let cfRow = 0;
+                    cofactorMatrix[cfLine] = [];
+
                     for(let mRow = 0; mRow < order; mRow++){
-                        if(mLine != i && mRow != i){
+                        if(mRow !== col){
                             cofactorMatrix[cfLine][cfRow] = m[mLine][mRow];
                             cfRow++;
                         }
                     }
-                    cfRow = 0;
-                    if(mLine != i) cfLine++;
+                    cfLine++;
                 }
-                detSum += Math.pow(-1, 1+row)* m[0][row-1] * det(order-1, cofactorMatrix);
-                row++;
-                cfLine = 0;
-            }
-            return detSum;
-        }
-
-        if(order === 4){
-          let cofactorMatrix = [];
-            for(let i = 0; i < order-1; i++){
-                cofactorMatrix[i] = new Array(order-1).fill(0);
-            }
-            let detSum = 0;
-            let cfLine = 0;
-            let cfRow = 0;
-            let row = 1;
-
-            for(let i = 0; i < order; i++){
-                for(let mLine = 0; mLine < order; mLine++){
-                    for(let mRow = 0; mRow < order; mRow++){
-                        if(mLine != i && mRow != i){
-                            cofactorMatrix[cfLine][cfRow] = m[mLine][mRow];
-                            cfRow++;
-                        }
-                    }
-                    cfRow = 0;
-                    if(mLine != i) cfLine++;
-                }
-                detSum += Math.pow(-1, 1+row)* m[0][row-1] * det(order-1, cofactorMatrix);
-                row++;
-                cfLine = 0;
+                detSum += Math.pow(-1, col) * m[0][col] * det(order - 1, cofactorMatrix);
             }
             return detSum;  
         }
     }   
 }
+
 
 export function transposta(m, order){
     let trans = [];
@@ -81,5 +50,49 @@ export function transposta(m, order){
     }
     
     return trans;
+}
+
+export function inversa(m, order){
+    const determinante = det(order, m);
+    if(determinante === 0) return 0;
+    let cofatores = [];
+    let tempArray = [];
+    let aux = 0;
+
+    for(let line = 0; line < order; line++){
+        for(let column = 0; column < order; column++){
+            let tempLine = 0;
+            let tempCol = 0;
+            for(let i = 0; i < order; i++){
+                if(i != line){
+                    tempArray[tempLine] = new Array(order-1).fill(0);
+                    for(let j = 0; j < order; j++){
+                        if(j != column){
+                            tempArray[tempLine][tempCol] = m[i][j];
+                            tempCol++; 
+                        }
+                    }
+                    tempLine++;
+                    tempCol = 0;
+                }
+            }
+            //console.log(`tempArray vale: ${tempArray}, line vale: ${m}, column vale: ${column}`);
+            cofatores[aux] = Math.pow(-1, line+1+column+1) * det(order-1, tempArray);
+            aux++;
+            tempArray = [];
+        }
+    }
+    console.log(cofatores);
+    cofatores = matrixExtractor(cofatores, order);
+    console.log(cofatores);
+    cofatores = transposta(cofatores, order);
+    console.log(cofatores);
+    for(let i = 0; i < order; i++){
+        for(let j = 0; j < order; j++){
+            cofatores[i][j] = (cofatores[i][j] / determinante).toFixed(2);
+        }
+    }
+    console.log(`Matriz inversa e: ${cofatores}`);
+    return cofatores;
 }
 

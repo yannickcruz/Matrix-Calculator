@@ -35,7 +35,7 @@ section{
     text-align: center;
 }
 
-.chooseTitle{
+.chooseTitle, #remainder{
     color: var(--white);
 }
 
@@ -160,4 +160,9 @@ section{
 }
 #matrixResult td:last-child {
     border-right: 3px solid var(--white);
+}
+
+#remainder{
+    color: #ff0000;
+    display: none;
 }

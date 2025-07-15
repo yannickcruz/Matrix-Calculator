@@ -1,5 +1,5 @@
-import { det, transposta } from "./calc.js";
-
+import { det, transposta, inversa } from "./calc.js";
+const remainder = document.getElementById("remainder");
 
 
 // Objeto que armazena a ordem das matrizes
@@ -374,6 +374,7 @@ function matrixSlider(){
         }
     }
     generateResultMatrix(0, 0, 0);
+    remainder.style.display = 'none';
 }
 
 function localStorageMod(action){
@@ -467,7 +468,18 @@ function calcFunc(){
         generateResultMatrix(0, 0, 0);
         generateResultMatrix(order, result);
     }
-
+    if(calcType === 'inversa'){
+        let result = inversa(matrixExtractor(m1, order), order);
+        if(result === 0){
+            displayCalc("A matriz selecionada não é inversível. Det = 0.");
+            return 0;
+        }
+        displayCalc("Inversa criada.");
+        removeMatrix(-1);
+        generateResultMatrix(0, 0, 0);
+        generateResultMatrix(order, result);
+        remainder.style.display = 'flex';
+    }
 
   
 }
