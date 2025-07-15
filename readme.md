@@ -19,7 +19,7 @@ Botões de seleção de cálculos ✅ <br/>
 Salvar matrizes e valores no Local Storage ✅ <br/>
 Cálculo de determinante ✅ <br/>
 Cálculo de transposta ✅ <br/>
-Cálculo de inversa ❌ <br/>
+Cálculo de inversa ✅ <br/>
 Cálculo de adição ❌ <br/>
 Cálculo de subtração ❌ <br/>
 Cálculo de multiplicação ❌ <br/>
