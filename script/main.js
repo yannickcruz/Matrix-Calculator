@@ -1,4 +1,4 @@
-import { det, transposta, inversa } from "./calc.js";
+import { det, transposta, inversa, somaOuSub } from "./calc.js";
 const remainder = document.getElementById("remainder");
 
 
@@ -31,12 +31,14 @@ const saveBtn = document.getElementById("save");
 const resetBtn = document.getElementById("reset");
 const saveMatValuesBtn = document.getElementById("saveMatrix");
 const confirmBtn = document.getElementById("confirm");
+const chooseCalcBtn = document.getElementById("chooseCalc");
 
 matrixNameSelect.addEventListener('change', matrixSlider);
 saveBtn.addEventListener('click', save);
 resetBtn.addEventListener('click', resetMatrix);
 saveMatValuesBtn.addEventListener('click', getMatrix);
 confirmBtn.addEventListener('click', calcFunc);
+chooseCalcBtn.addEventListener('change', multiMatrixCalcEnable);
 
 
 //singleMatrixSelect.addEventListener('change', matrixSlider);
@@ -425,12 +427,13 @@ function displayCalc(msg){
 function calcFunc(){
     const calcType = document.getElementById("chooseCalc").value;
     let matrix1 = document.getElementById("singleOps");
-    let matrix2 = document.getElementById("multiEnable");
+    let matrix2 = document.getElementById("multiOps");
     let m2Selected;
     let m2;
     let m1Selected;
     let m1;
-    
+    const m2Avaiable = window.getComputedStyle(matrix2);
+
 
     if(matrix1.value != ""){
         m1Selected = matrix1.options[matrix1.selectedIndex];
@@ -441,10 +444,10 @@ function calcFunc(){
         displayCalc("ERRO! Selecione uma matriz válida!");
         return 0;
     } 
-    
 
-    if(matrix2.style.display === 'flex'){
+    if(m2Avaiable.display === 'block'){
         if(matrix2.value != ""){
+            console.log(matrix2);
             m2Selected = matrix2.options[matrix2.selectedIndex];
             m2 = m2Selected.getAttribute("matrixArray");
             m2 = matArr[m2];
@@ -456,6 +459,9 @@ function calcFunc(){
     }
 
     const order = parseInt(mat[matrix1]);
+    const order2 = parseInt(mat[matrix2]);
+    let tempOrder;
+    order > order2 ? tempOrder = order : tempOrder = order2;
     
     if(calcType === 'det'){
         let result = det(order, matrixExtractor(m1, order));
@@ -480,7 +486,24 @@ function calcFunc(){
         generateResultMatrix(order, result);
         remainder.style.display = 'flex';
     }
-
+    if(calcType === 'soma'){
+        m1 = matrixExtractor(m1, order);
+        m2 = matrixExtractor(m2, order2);
+        let result = somaOuSub(m1, m2, order, order2, 1);
+        displayCalc("Soma de matrizes criada.");
+        removeMatrix(-1);
+        generateResultMatrix(0, 0, 0);
+        generateResultMatrix(tempOrder, result);
+    }
+    if(calcType === 'sub'){
+        m1 = matrixExtractor(m1, order);
+        m2 = matrixExtractor(m2, order2);
+        let result = somaOuSub(m1, m2, order, order2, 0);
+        displayCalc("Soma de matrizes criada.");
+        removeMatrix(-1);
+        generateResultMatrix(0, 0, 0);
+        generateResultMatrix(tempOrder, result);
+    }
   
 }
 

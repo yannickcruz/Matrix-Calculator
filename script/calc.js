@@ -96,3 +96,51 @@ export function inversa(m, order){
     return cofatores;
 }
 
+export function somaOuSub(m1, m2, order, order2, action){
+    //console.log(m2);
+    let tempMatrix = [];
+
+    if(order2 > order){
+        for(let k = 0; k < order2; k++){
+            tempMatrix[k] = new Array(order2).fill(0);
+        }
+        for(let line = 0; line < order2; line++){
+            for(let col = 0; col < order2; col++){
+                if(col < order && line < order){
+                    tempMatrix[line][col] = m1[line][col];
+                } else{
+                    tempMatrix[line][col] = 0;
+                }
+            }
+        }
+        m1 = tempMatrix;
+    }
+    if(order2 < order){
+        for(let k = 0; k < order; k++){
+            tempMatrix[k] = new Array(order2).fill(0);
+        }
+        for(let line = 0; line < order; line++){
+            tempMatrix[line] = [];
+            for(let col = 0; col < order; col++){
+                if(col < order2 && line < order2){
+                    tempMatrix[line][col] = m2[line][col];
+                } else{
+                    tempMatrix[line][col] = 0;
+                }
+            }
+        }
+        m2 = tempMatrix;
+    }
+    if(order2 > order) order = order2;
+
+    for(let m1Line = 0; m1Line < order; m1Line++){
+        for(let m1Col = 0; m1Col < order; m1Col++){
+           if(action === 1){
+            m1[m1Line][m1Col] += m2[m1Line][m1Col];
+           } else if(action === 0){
+            m1[m1Line][m1Col] -= m2[m1Line][m1Col];
+           }
+        }
+    }
+    return m1;
+}
