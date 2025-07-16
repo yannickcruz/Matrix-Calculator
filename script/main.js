@@ -1,4 +1,4 @@
-import { det, transposta, inversa, somaOuSub } from "./calc.js";
+import { det, transposta, inversa, somaOuSub, multi } from "./calc.js";
 const remainder = document.getElementById("remainder");
 
 
@@ -503,6 +503,19 @@ function calcFunc(){
         removeMatrix(-1);
         generateResultMatrix(0, 0, 0);
         generateResultMatrix(tempOrder, result);
+    }
+    if(calcType === 'multi'){
+        m1 = matrixExtractor(m1, order);
+        m2 = matrixExtractor(m2, order2);
+        let result = multi(m1, m2, order, order2);
+        if(result === -1){
+            displayCalc("Estas matrizes não podem ser multiplicadas!");
+            return 0;
+        }
+        displayCalc("Multiplicação de matrizes criada.");
+        removeMatrix(-1);
+        generateResultMatrix(0, 0, 0);
+        generateResultMatrix(order, result);
     }
   
 }

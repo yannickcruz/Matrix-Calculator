@@ -89,7 +89,7 @@ export function inversa(m, order){
     console.log(cofatores);
     for(let i = 0; i < order; i++){
         for(let j = 0; j < order; j++){
-            cofatores[i][j] = (cofatores[i][j] / determinante).toFixed(2);
+            cofatores[i][j] = (cofatores[i][j] / determinante).toFixed(4);
         }
     }
     console.log(`Matriz inversa e: ${cofatores}`);
@@ -117,7 +117,7 @@ export function somaOuSub(m1, m2, order, order2, action){
     }
     if(order2 < order){
         for(let k = 0; k < order; k++){
-            tempMatrix[k] = new Array(order2).fill(0);
+            tempMatrix[k] = new Array(order).fill(0);
         }
         for(let line = 0; line < order; line++){
             tempMatrix[line] = [];
@@ -143,4 +143,23 @@ export function somaOuSub(m1, m2, order, order2, action){
         }
     }
     return m1;
+}
+
+export function multi(m1, m2, order, order2){
+    if(order != order2) return -1;
+    
+    let tempMatrix = [];
+    for(let i = 0; i < order; i++){
+        tempMatrix[i] = new Array(order).fill(0);
+    }
+
+    for(let iniLine = 0; iniLine < order; iniLine++){
+        for(let col = 0; col < order; col++){
+            for(let ctrl = 0; ctrl < order; ctrl++){
+                tempMatrix[iniLine][col] += m1[iniLine][ctrl] * m2[ctrl][col];
+            }
+        }
+    }
+
+    return tempMatrix;
 }
