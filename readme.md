@@ -22,6 +22,6 @@ Cálculo de transposta ✅ <br/>
 Cálculo de inversa ✅ <br/>
 Cálculo de adição ✅ <br/>
 Cálculo de subtração ✅ <br/>
-Cálculo de multiplicação ❌ <br/>
-Deployment ❌
+Cálculo de multiplicação ✅ <br/>
+Deployment ✅
 
