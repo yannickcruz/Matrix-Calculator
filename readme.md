@@ -1,5 +1,5 @@
 # Calculadora de Matriz
-## Em desenvolvimento/Under development
+## Em Fase de testes
 
 Calculadora simples de matrizes quadradas que podem variar de escalares até matrizes 4x4.
 Podem ser criadas até 4 matrizes, com a possibilidade de realizar os seguintes cálculos:
@@ -22,6 +22,6 @@ Cálculo de transposta ✅ <br/>
 Cálculo de inversa ✅ <br/>
 Cálculo de adição ✅ <br/>
 Cálculo de subtração ✅ <br/>
-Cálculo de multiplicação ❌ <br/>
-Deployment ❌
+Cálculo de multiplicação ✅ <br/>
+Deployment ✅
 
