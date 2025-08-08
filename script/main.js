@@ -1,5 +1,6 @@
 import { det, transposta, inversa, somaOuSub, multi } from "./calc.js";
 const remainder = document.getElementById("remainder");
+const resultTable = document.getElementById("matrixResult");
 
 
 // Objeto que armazena a ordem das matrizes
@@ -433,6 +434,9 @@ function calcFunc(){
     let m1Selected;
     let m1;
     const m2Avaiable = window.getComputedStyle(matrix2);
+    remainder.style.display = 'none';
+    resultTable.style.display = 'none';
+    
 
 
     if(matrix1.value != ""){
@@ -540,7 +544,7 @@ export function matrixExtractor(inputs, order){
 }
 
 function generateResultMatrix(order, matrix, action){
-    const resultTable = document.getElementById("matrixResult");
+    
 
     if(action === 0){
         resultTable.innerHTML = '';
